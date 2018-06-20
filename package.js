@@ -1,3 +1,5 @@
+/* global Package */
+
 Package.describe({
   name: 'liberation:supermatch',
   version: '0.0.1',
@@ -8,17 +10,17 @@ Package.describe({
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
-});
+})
 
-Package.onUse(function(api) {
-  api.versionsFrom('1.6.1');
-  api.use(['check', 'ecmascript']);
-  api.mainModule('supermatch.js');
-});
+Package.onUse(function (api) {
+  api.versionsFrom('1.6.1')
+  api.use(['check', 'ecmascript'])
+  api.mainModule('supermatch.js')
+})
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('liberation:supermatch');
-  api.mainModule('supermatch-tests.js');
-});
+Package.onTest(function (api) {
+  api.use('ecmascript')
+  api.use('tinytest')
+  api.use('liberation:supermatch')
+  api.mainModule('supermatch-tests.js')
+})

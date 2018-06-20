@@ -1,6 +1,6 @@
 # meteor-supermatch
 
-##new patterns
+## new patterns
 ```js
 Match.Base64
 Match.Date
@@ -16,7 +16,7 @@ Match.FiniteNumber
 
 ```
 
-###new methods
+## new methods
 ```js
 Match.isBoolean
 Match.isDate

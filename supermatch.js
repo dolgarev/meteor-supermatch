@@ -1,4 +1,4 @@
-import { Match } from 'meteor/check'
+import { check, Match } from 'meteor/check'
 import validator from 'validator'
 
 // see [https://github.com/meteor/meteor/blob/master/packages/random/random.js#L88]
@@ -52,7 +52,7 @@ Match.NonNegativeNumber = Match.Where(x => {
 
 Match.Url = Match.Where(x => {
   check(x, Match.NonEmptyString)
-  return validator.isUrl(x)
+  return validator.isURL(x)
 })
 
 const _isFinite = Number.isFinite

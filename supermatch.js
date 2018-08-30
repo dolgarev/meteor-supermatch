@@ -1,21 +1,35 @@
 import { check, Match } from 'meteor/check'
-import validator from 'validator'
+import path from 'path'
+
+const validator = (function () {
+  try {
+    return path.resolve('validator').length > 0
+      ? require('validator')
+      : null
+  } catch (e) {
+    return null
+  }
+})()
 
 // see [https://github.com/meteor/meteor/blob/master/packages/random/random.js#L88]
 const UNMISTAKABLE_CHARS = '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz'
 const INVALID_ID_CHARS_REGEX = new RegExp(`[^${UNMISTAKABLE_CHARS}]`)
 
-Match.Base64 = Match.Where(x => {
-  check(x, Match.NonEmptyString)
-  return validator.isBase64(x)
-})
+if (validator) {
+  Match.Base64 = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isBase64(x)
+  })
+}
 
 Match.Date = Match.Where(x => x instanceof Date && !isNaN(+x))
 
-Match.DataURI = Match.Where(x => {
-  check(x, Match.NonEmptyString)
-  return validator.isDataURI(x)
-})
+if (validator) {
+  Match.DataURI = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isDataURI(x)
+  })
+}
 
 // code ported from [https://atmospherejs.com/peerlibrary/check-extension]
 Match.DocumentId = Match.Where(x => {
@@ -24,11 +38,13 @@ Match.DocumentId = Match.Where(x => {
   return !INVALID_ID_CHARS_REGEX.test(x)
 })
 
-Match.Email = Match.Where(x => {
-  check(x, Match.NonEmptyString)
-  return validator.isEmail(x)
-})
-Match.EMail = Match.Email
+if (validator) {
+  Match.Email = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isEmail(x)
+  })
+  Match.EMail = Match.Email
+}
 
 Match.NonEmptyArray = Match.Where(x => {
   check(x, Array)
@@ -50,10 +66,12 @@ Match.NonNegativeNumber = Match.Where(x => {
   return x >= 0
 })
 
-Match.Url = Match.Where(x => {
-  check(x, Match.NonEmptyString)
-  return validator.isURL(x)
-})
+if (validator) {
+  Match.Url = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isURL(x)
+  })
+}
 
 const _isFinite = Number.isFinite
   ? Number.isFinite
@@ -72,13 +90,13 @@ Match.isNumber = num => Match.test(num, Number)
 Match.isString = str => Match.test(str, String)
 Match.isUndefined = val => Match.test(val, undefined)
 
-Match.isBase64 = str => Match.test(str, Match.Base64)
-Match.isDataURI = str => Match.test(str, Match.DataURI)
+if (validator) Match.isBase64 = str => Match.test(str, Match.Base64)
+if (validator) Match.isDataURI = str => Match.test(str, Match.DataURI)
 Match.isDocumentId = id => Match.test(id, Match.DocumentId)
-Match.isEmail = str => Match.test(str, Match.Email)
+if (validator) Match.isEmail = str => Match.test(str, Match.Email)
 Match.isFiniteNumber = num => Match.test(num, Match.FiniteNumber)
 Match.isNonEmptyArray = arr => Match.test(arr, Match.NonEmptyArray)
 Match.isNonEmptyString = str => Match.test(str, Match.NonEmptyString)
 Match.isNonNegativeInteger = num => Match.test(num, Match.NonNegativeInteger)
 Match.isNonNegativeNumber = num => Match.test(num, Match.NonNegativeNumber)
-Match.isUrl = str => Match.test(str, Match.Url)
+if (validator) Match.isUrl = str => Match.test(str, Match.Url)

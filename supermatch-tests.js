@@ -1,4 +1,5 @@
 import { Match } from 'meteor/check'
+import { Random } from 'meteor/random'
 import { Tinytest } from 'meteor/tinytest'
 
 Tinytest.add('supermatch - Match.isBoolean', function (test) {
@@ -50,4 +51,48 @@ Tinytest.add('supermatch - Match.isString', function (test) {
 Tinytest.add('supermatch - Match.isUndefined', function (test) {
   test.equal(Match.isUndefined(undefined), true)
   test.equal(Match.isUndefined(null), false)
+})
+
+Tinytest.add('supermatch - Match.isDocumentId', function (test) {
+  test.equal(Match.isDocumentId(Random.id()), true)
+  test.equal(Match.isDocumentId(Random.id(18)), false)
+})
+
+Tinytest.add('supermatch - Match.isFiniteNumber', function (test) {
+  test.equal(Match.isFiniteNumber(0), true)
+  test.equal(Match.isFiniteNumber(0.99), true)
+  test.equal(Match.isFiniteNumber(-0.99), true)
+  test.equal(Match.isFiniteNumber(NaN), false)
+  test.equal(Match.isFiniteNumber(Infinity), false)
+  test.equal(Match.isFiniteNumber(-Infinity), false)
+})
+
+Tinytest.add('supermatch - Match.isNonEmptyArray', function (test) {
+  test.equal(Match.isNonEmptyArray([1, 2, 3]), true)
+  test.equal(Match.isNonEmptyArray([]), false)
+})
+
+Tinytest.add('supermatch - Match.isNonEmptyString', function (test) {
+  test.equal(Match.isNonEmptyString('abc'), true)
+  test.equal(Match.isNonEmptyString(''), false)
+})
+
+Tinytest.add('supermatch - Match.isNonNegativeInteger', function (test) {
+  test.equal(Match.isNonNegativeInteger(0), true)
+  test.equal(Match.isNonNegativeInteger(1), true)
+  test.equal(Match.isNonNegativeInteger(-1), false)
+  test.equal(Match.isNonNegativeInteger(NaN), false)
+  test.equal(Match.isNonNegativeInteger(Infinity), false)
+  test.equal(Match.isNonNegativeInteger(-Infinity), false)
+})
+
+Tinytest.add('supermatch - Match.isNonNegativeNumber', function (test) {
+  test.equal(Match.isNonNegativeNumber(0), true)
+  test.equal(Match.isNonNegativeNumber(1), true)
+  test.equal(Match.isNonNegativeNumber(-1), false)
+  test.equal(Match.isNonNegativeNumber(1.1), true)
+  test.equal(Match.isNonNegativeNumber(-1.1), false)
+  test.equal(Match.isNonNegativeNumber(NaN), false)
+  test.equal(Match.isNonNegativeNumber(Infinity), true)
+  test.equal(Match.isNonNegativeNumber(-Infinity), false)
 })

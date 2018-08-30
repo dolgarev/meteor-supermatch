@@ -19,7 +19,7 @@ Package.onUse(function (api) {
 })
 
 Package.onTest(function (api) {
-  api.use(['ecmascript', 'tinytest', 'check'])
+  api.use(['ecmascript', 'tinytest', 'check', 'random'])
   api.use('liberation:supermatch')
   api.mainModule('supermatch-tests.js')
 })

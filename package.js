@@ -13,14 +13,13 @@ Package.describe({
 })
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.6.1')
+  api.versionsFrom('1.6.0.1')
   api.use(['check', 'ecmascript'])
   api.mainModule('supermatch.js')
 })
 
 Package.onTest(function (api) {
-  api.use('ecmascript')
-  api.use('tinytest')
+  api.use(['ecmascript', 'tinytest', 'check'])
   api.use('liberation:supermatch')
   api.mainModule('supermatch-tests.js')
 })

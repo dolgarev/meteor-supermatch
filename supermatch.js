@@ -82,6 +82,8 @@ Match.FiniteNumber = Match.Where(x => {
   return _isFinite(x)
 })
 
+Match.Nil = Match.Where(v => v == null)
+
 Match.isBoolean = bool => Match.test(bool, Boolean)
 Match.isDate = date => Match.test(date, Match.Date)
 Match.isInteger = num => Match.test(num, Match.Integer)
@@ -95,6 +97,7 @@ if (validator) Match.isDataURI = str => Match.test(str, Match.DataURI)
 Match.isDocumentId = id => Match.test(id, Match.DocumentId)
 if (validator) Match.isEmail = str => Match.test(str, Match.Email)
 Match.isFiniteNumber = num => Match.test(num, Match.FiniteNumber)
+Match.isNil = val => Match.test(val, Match.Nil)
 Match.isNonEmptyArray = arr => Match.test(arr, Match.NonEmptyArray)
 Match.isNonEmptyString = str => Match.test(str, Match.NonEmptyString)
 Match.isNonNegativeInteger = num => Match.test(num, Match.NonNegativeInteger)

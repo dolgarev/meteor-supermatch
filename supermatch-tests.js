@@ -34,7 +34,7 @@ Tinytest.add('supermatch - Match.isNumber', function (test) {
   test.equal(Match.isNumber(-1), true)
   test.equal(Match.isNumber(1.0), true)
   test.equal(Match.isNumber(1.1), true)
-  test.equal(Match.isNumber("0"), false)
+  test.equal(Match.isNumber('0'), false)
   test.equal(Match.isNumber(NaN), true)
   test.equal(Match.isNumber(Infinity), true)
   test.equal(Match.isNumber(-Infinity), true)
@@ -95,4 +95,9 @@ Tinytest.add('supermatch - Match.isNonNegativeNumber', function (test) {
   test.equal(Match.isNonNegativeNumber(NaN), false)
   test.equal(Match.isNonNegativeNumber(Infinity), true)
   test.equal(Match.isNonNegativeNumber(-Infinity), false)
+})
+
+Tinytest.add('supermatch - Match.isNil', function (test) {
+  test.equal(Match.isNil(null), true)
+  test.equal(Match.isNil(undefined), true)
 })

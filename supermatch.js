@@ -15,21 +15,7 @@ const validator = (function () {
 const UNMISTAKABLE_CHARS = '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz'
 const INVALID_ID_CHARS_REGEX = new RegExp(`[^${UNMISTAKABLE_CHARS}]`)
 
-if (validator) {
-  Match.Base64 = Match.Where(x => {
-    check(x, Match.NonEmptyString)
-    return validator.isBase64(x)
-  })
-}
-
 Match.Date = Match.Where(x => x instanceof Date && !isNaN(+x))
-
-if (validator) {
-  Match.DataURI = Match.Where(x => {
-    check(x, Match.NonEmptyString)
-    return validator.isDataURI(x)
-  })
-}
 
 // code ported from [https://atmospherejs.com/peerlibrary/check-extension]
 Match.DocumentId = Match.Where(x => {
@@ -37,14 +23,6 @@ Match.DocumentId = Match.Where(x => {
   check(x, Match.Where(v => v.length === 17))
   return !INVALID_ID_CHARS_REGEX.test(x)
 })
-
-if (validator) {
-  Match.Email = Match.Where(x => {
-    check(x, Match.NonEmptyString)
-    return validator.isEmail(x)
-  })
-  Match.EMail = Match.Email
-}
 
 Match.NonEmptyArray = Match.Where(x => {
   check(x, Array)
@@ -66,13 +44,6 @@ Match.NonNegativeNumber = Match.Where(x => {
   return x >= 0
 })
 
-if (validator) {
-  Match.Url = Match.Where(x => {
-    check(x, Match.NonEmptyString)
-    return validator.isURL(x)
-  })
-}
-
 const _isFinite = Number.isFinite
   ? Number.isFinite
   : value => typeof value === 'number' && isFinite(value)
@@ -83,6 +54,29 @@ Match.FiniteNumber = Match.Where(x => {
 })
 
 Match.Nil = Match.Where(v => v == null)
+
+if (validator) {
+  Match.Base64 = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isBase64(x)
+  })
+
+  Match.DataURI = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isDataURI(x)
+  })
+
+  Match.Email = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isEmail(x)
+  })
+  Match.EMail = Match.Email
+
+  Match.Url = Match.Where(x => {
+    check(x, Match.NonEmptyString)
+    return validator.isURL(x)
+  })
+}
 
 Match.isBoolean = bool => Match.test(bool, Boolean)
 Match.isDate = date => Match.test(date, Match.Date)

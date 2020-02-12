@@ -1,6 +1,17 @@
 import { Match } from 'meteor/check'
+import { Mongo } from 'meteor/mongo'
 import { Random } from 'meteor/random'
 import { Tinytest } from 'meteor/tinytest'
+
+const validator = (function () {
+  try {
+    return path.resolve('validator').length > 0
+      ? require('validator')
+      : null
+  } catch (e) {
+    return null
+  }
+})()
 
 Tinytest.add('supermatch - Match.isBoolean', function (test) {
   test.equal(Match.isBoolean(true), true)
@@ -97,7 +108,10 @@ Tinytest.add('supermatch - Match.isNonNegativeNumber', function (test) {
   test.equal(Match.isNonNegativeNumber(-Infinity), false)
 })
 
-Tinytest.add('supermatch - Match.isNil', function (test) {
-  test.equal(Match.isNil(null), true)
-  test.equal(Match.isNil(undefined), true)
-})
+if (validator) {
+  Tinytest.add('supermatch - Match.isMongoId', function (test) {
+    test.equal(Match.isMongoId(new Mongo.ObjectID()._str), true)
+    test.equal(Match.isMongoId(Random.id()), false)
+    test.equal(Match.isMongoId(Random.id(24)), false)
+  })
+}

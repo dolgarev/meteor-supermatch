@@ -9,13 +9,13 @@ Match.Date
 Match.DataURI*
 Match.DocumentId
 Match.Email or Match.EMail*
+Match.FiniteNumber
+Match.MongoId*
 Match.NonEmptyArray
 Match.NonEmptyString
 Match.NonNegativeInteger
 Match.NonNegativeNumber
-Match.Url*
-Match.FiniteNumber
-Match.Nil
+Match.URL or Match.Url*
 
 ```
 
@@ -34,7 +34,7 @@ Match.isDataURI*
 Match.isDocumentId
 Match.isEmail*
 Match.isFiniteNumber
-Match.isNil
+Match.isMongoId*
 Match.isNonEmptyArray
 Match.isNonEmptyString
 Match.isNonNegativeInteger

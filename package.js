@@ -2,7 +2,7 @@
 
 Package.describe({
   name: 'liberation:supermatch',
-  version: '0.0.4',
+  version: '0.0.7',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
@@ -19,7 +19,7 @@ Package.onUse(function (api) {
 })
 
 Package.onTest(function (api) {
-  api.use(['ecmascript', 'tinytest', 'check', 'random'])
+  api.use(['ecmascript', 'tinytest', 'check', 'mongo', 'random'])
   api.use('liberation:supermatch')
   api.mainModule('supermatch-tests.js')
 })

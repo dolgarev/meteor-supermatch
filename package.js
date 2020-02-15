@@ -4,7 +4,7 @@ Package.describe({
   name: 'liberation:supermatch',
   version: '0.0.8',
   // Brief, one-line summary of the package.
-  summary: '',
+  summary: 'New patterns and methods to the built-in Match object',
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/dolgarev/meteor-supermatch',
   // By default, Meteor will default to using README.md for documentation.

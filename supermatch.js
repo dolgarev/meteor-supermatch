@@ -1,4 +1,4 @@
-import { check, Match } from 'meteor/check'
+import { Match } from 'meteor/check'
 import path from 'path'
 
 const validator = (function () {
@@ -17,10 +17,14 @@ const DOCUMENT_ID_PATTERN = /^[23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrst
 Match.is = (v, validatorName, ...opts) => {
   const fn = typeof validatorName === 'function'
     ? validatorName
-    : validator[validatorName]
+    : validator && validator[validatorName]
+
+  if (typeof fn !== 'function') {
+    throw new Error('validation rule does not exist')
+  }
 
   return Match.test(v, Match.Where(x => {
-    return typeof x === 'string' && typeof fn === 'function' && fn(x, ...opts)
+    return typeof x === 'string' && fn(x, ...opts)
   }))
 }
 
@@ -37,22 +41,19 @@ Match.NonEmptyString = Match.Where(x => {
 })
 
 Match.NonNegativeInteger = Match.Where(x => {
-  check(x, Match.Integer)
-  return x >= 0
+  return Match.test(x, Match.Integer) && x >= 0
 })
 
 Match.NonNegativeNumber = Match.Where(x => {
-  check(x, Number)
-  return x >= 0
+  return Match.test(x, Number) && x >= 0
 })
 
-const _isFinite = Number.isFinite
+const _isFinite = typeof Number.isFinite === 'function'
   ? Number.isFinite
   : value => typeof value === 'number' && isFinite(value)
 
 Match.FiniteNumber = Match.Where(x => {
-  check(x, Number)
-  return _isFinite(x)
+  return Match.test(x, Number) && _isFinite(x)
 })
 
 if (validator) {

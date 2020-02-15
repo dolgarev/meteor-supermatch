@@ -2,6 +2,7 @@ import { Match } from 'meteor/check'
 import { Mongo } from 'meteor/mongo'
 import { Random } from 'meteor/random'
 import { Tinytest } from 'meteor/tinytest'
+import path from 'path'
 
 const validator = (function () {
   try {

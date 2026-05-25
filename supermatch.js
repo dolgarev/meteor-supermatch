@@ -33,6 +33,10 @@ Match.NonEmptyString = Match.Where(x => {
   return typeof x === 'string' && x.trim().length > 0
 })
 
+Match.NonEmptyRawString = Match.Where(x => {
+  return typeof x === 'string' && x.length > 0
+})
+
 Match.NonNegativeInteger = Match.Where(x => {
   return Number.isInteger(x) && x >= 0
 })
@@ -60,6 +64,7 @@ Match.isFiniteNumber = num => Match.test(num, Match.FiniteNumber)
 Match.isPositiveNumber = num => Match.test(num, Match.PositiveNumber)
 Match.isNonEmptyArray = arr => Match.test(arr, Match.NonEmptyArray)
 Match.isNonEmptyString = str => Match.test(str, Match.NonEmptyString)
+Match.isNonEmptyRawString = str => Match.test(str, Match.NonEmptyRawString)
 Match.isNonNegativeInteger = num => Match.test(num, Match.NonNegativeInteger)
 Match.isNaturalNumber = num => Match.test(num, Match.NaturalNumber)
 Match.isNonNegativeNumber = num => Match.test(num, Match.NonNegativeNumber)

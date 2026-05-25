@@ -96,6 +96,12 @@ Tinytest.add('supermatch - Match.isNonEmptyString', function (test) {
   test.equal(Match.isNonEmptyString(''), false)
 })
 
+Tinytest.add('supermatch - Match.isNonEmptyRawString', function (test) {
+  test.equal(Match.isNonEmptyRawString('abc'), true)
+  test.equal(Match.isNonEmptyRawString(''), false)
+  test.equal(Match.isNonEmptyRawString('   '), true)
+})
+
 Tinytest.add('supermatch - Match.isNonNegativeInteger', function (test) {
   test.equal(Match.isNonNegativeInteger(0), true)
   test.equal(Match.isNonNegativeInteger(1), true)

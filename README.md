@@ -17,6 +17,7 @@ Match.FiniteNumber
 Match.PositiveNumber
 Match.NonEmptyArray
 Match.NonEmptyString
+Match.NonEmptyRawString
 Match.NonNegativeInteger
 Match.NaturalNumber
 Match.NonNegativeNumber
@@ -40,6 +41,7 @@ Match.isFiniteNumber(num)
 Match.isPositiveNumber(num)
 Match.isNonEmptyArray(arr)
 Match.isNonEmptyString(str)
+Match.isNonEmptyRawString(str)
 Match.isNonNegativeInteger(num)
 Match.isNaturalNumber(num)
 Match.isNonNegativeNumber(num)

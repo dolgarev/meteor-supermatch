@@ -13,7 +13,7 @@ Package.describe({
 })
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.6.0.1')
+  api.versionsFrom('3.3')
   api.use(['check', 'ecmascript'])
   api.mainModule('supermatch.js')
 })

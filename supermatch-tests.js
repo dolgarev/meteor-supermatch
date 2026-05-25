@@ -2,17 +2,13 @@ import { Match } from 'meteor/check'
 import { Mongo } from 'meteor/mongo'
 import { Random } from 'meteor/random'
 import { Tinytest } from 'meteor/tinytest'
-import path from 'path'
 
-const validator = (function () {
-  try {
-    return path.resolve('validator').length > 0
-      ? require('validator')
-      : null
-  } catch (e) {
-    return null
-  }
-})()
+let validator
+try {
+  validator = require('validator')
+} catch (e) {
+  validator = null
+}
 
 Tinytest.add('supermatch - Match.isBoolean', function (test) {
   test.equal(Match.isBoolean(true), true)

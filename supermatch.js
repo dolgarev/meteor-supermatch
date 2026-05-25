@@ -37,6 +37,10 @@ Match.NonNegativeInteger = Match.Where(x => {
   return Number.isInteger(x) && x >= 0
 })
 
+Match.NaturalNumber = Match.Where(x => {
+  return Number.isInteger(x) && x > 0
+})
+
 Match.NonNegativeNumber = Match.Where(x => {
   return typeof x === 'number' && x >= 0
 })
@@ -45,13 +49,19 @@ Match.FiniteNumber = Match.Where(x => {
   return typeof x === 'number' && Number.isFinite(x)
 })
 
+Match.PositiveNumber = Match.Where(x => {
+  return typeof x === 'number' && Number.isFinite(x) && x > 0
+})
+
 // Helper functions
 Match.isDate = date => Match.test(date, Match.Date)
 Match.isDocumentId = id => Match.test(id, Match.DocumentId)
 Match.isFiniteNumber = num => Match.test(num, Match.FiniteNumber)
+Match.isPositiveNumber = num => Match.test(num, Match.PositiveNumber)
 Match.isNonEmptyArray = arr => Match.test(arr, Match.NonEmptyArray)
 Match.isNonEmptyString = str => Match.test(str, Match.NonEmptyString)
 Match.isNonNegativeInteger = num => Match.test(num, Match.NonNegativeInteger)
+Match.isNaturalNumber = num => Match.test(num, Match.NaturalNumber)
 Match.isNonNegativeNumber = num => Match.test(num, Match.NonNegativeNumber)
 
 if (validator) {

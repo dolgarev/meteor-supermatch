@@ -75,6 +75,17 @@ Tinytest.add('supermatch - Match.isFiniteNumber', function (test) {
   test.equal(Match.isFiniteNumber(-Infinity), false)
 })
 
+Tinytest.add('supermatch - Match.isPositiveNumber', function (test) {
+  test.equal(Match.isPositiveNumber(0.1), true)
+  test.equal(Match.isPositiveNumber(1), true)
+  test.equal(Match.isPositiveNumber(42), true)
+  test.equal(Match.isPositiveNumber(0), false)
+  test.equal(Match.isPositiveNumber(-1), false)
+  test.equal(Match.isPositiveNumber(NaN), false)
+  test.equal(Match.isPositiveNumber(Infinity), false)
+  test.equal(Match.isPositiveNumber(-Infinity), false)
+})
+
 Tinytest.add('supermatch - Match.isNonEmptyArray', function (test) {
   test.equal(Match.isNonEmptyArray([1, 2, 3]), true)
   test.equal(Match.isNonEmptyArray([]), false)
@@ -92,6 +103,16 @@ Tinytest.add('supermatch - Match.isNonNegativeInteger', function (test) {
   test.equal(Match.isNonNegativeInteger(NaN), false)
   test.equal(Match.isNonNegativeInteger(Infinity), false)
   test.equal(Match.isNonNegativeInteger(-Infinity), false)
+})
+
+Tinytest.add('supermatch - Match.isNaturalNumber', function (test) {
+  test.equal(Match.isNaturalNumber(1), true)
+  test.equal(Match.isNaturalNumber(42), true)
+  test.equal(Match.isNaturalNumber(0), false)
+  test.equal(Match.isNaturalNumber(-1), false)
+  test.equal(Match.isNaturalNumber(NaN), false)
+  test.equal(Match.isNaturalNumber(Infinity), false)
+  test.equal(Match.isNaturalNumber(-Infinity), false)
 })
 
 Tinytest.add('supermatch - Match.isNonNegativeNumber', function (test) {

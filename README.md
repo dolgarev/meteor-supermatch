@@ -14,9 +14,11 @@ meteor npm i validator --save   # optional, required for (*) patterns
 Match.Date
 Match.DocumentId
 Match.FiniteNumber
+Match.PositiveNumber
 Match.NonEmptyArray
 Match.NonEmptyString
 Match.NonNegativeInteger
+Match.NaturalNumber
 Match.NonNegativeNumber
 
 Match.Base64*          // requires validator
@@ -35,9 +37,11 @@ Match.UUID*            // requires validator
 Match.isDate(date)
 Match.isDocumentId(id)
 Match.isFiniteNumber(num)
+Match.isPositiveNumber(num)
 Match.isNonEmptyArray(arr)
 Match.isNonEmptyString(str)
 Match.isNonNegativeInteger(num)
+Match.isNaturalNumber(num)
 Match.isNonNegativeNumber(num)
 
 Match.isBase64(str)       // requires validator

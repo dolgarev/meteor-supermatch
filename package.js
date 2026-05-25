@@ -2,7 +2,7 @@
 
 Package.describe({
   name: 'liberation:supermatch',
-  version: '0.0.8',
+  version: '0.0.9',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
